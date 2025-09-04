@@ -11,20 +11,26 @@ class Program
         }
 
         string regPath = args[0];
-        string valueName = args[1];
 
-        return CheckRegistryValueExists(regPath, valueName);
+        // 从第1个参数开始依次检查
+        for (int i = 1; i < args.Length; i++)
+        {
+            string valueName = args[i];
+            if (CheckRegistryValueExists(regPath, valueName))
+            {
+                return i; // 返回对应序号
+            }
+        }
+
+        return 99; // 都没找到
     }
 
     /// <summary>
     /// 检查注册表路径下是否存在指定值名
     /// </summary>
-    /// <param name="regPath">完整注册表路径，如 HKEY_LOCAL_MACHINE\SOFTWARE\test</param>
-    /// <param name="valueName">要检查的值名</param>
-    /// <returns>0=存在，1=不存在</returns>
-    static int CheckRegistryValueExists(string regPath, string valueName)
+    static bool CheckRegistryValueExists(string regPath, string valueName)
     {
         object val = Registry.GetValue(regPath, valueName, null);
-        return val != null ? 0 : 1;
+        return val != null;
     }
 }
