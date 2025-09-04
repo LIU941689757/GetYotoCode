@@ -14,11 +14,12 @@
   - 以此类推
 - 如果所有值名都没找到 → 返回 **99**
 - 参数不足 → 返回 **2**
+- 以此类推
 
 ## 使用示例
 
-### 命令行
+### bat调用
 
 ```bat
-GetYotoCode.exe "HKEY_LOCAL_MACHINE\SOFTWARE\test" "cipn" "copn"
+GetYotoCode.exe "HKEY_LOCAL_MACHINE\SOFTWARE\test" "XXXX" "LLLL"
 echo %ERRORLEVEL%
